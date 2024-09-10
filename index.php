@@ -4,6 +4,18 @@ include 'db.php';
 
 // Obtener todas las tareas de la base de datos
 $tasks = $db->query("SELECT * FROM tasks")->fetchAll(PDO::FETCH_ASSOC);
+
+// Contar tareas completadas y pendientes
+$totalTasks = count($tasks);
+$completedTasks = count(array_filter($tasks, fn($task) => $task['completed'] == 1));
+$pendingTasks = $totalTasks - $completedTasks;
+
+// Marcar todas las tareas como completadas
+if (isset($_POST['complete_all'])) {
+    $db->query("UPDATE tasks SET completed = 1");
+    header('Location: index.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +29,16 @@ $tasks = $db->query("SELECT * FROM tasks")->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <h1>Lista de Tareas</h1>
+
+    <!-- Mostrar contador de tareas -->
+    <p>Total de tareas: <?php echo $totalTasks; ?></p>
+    <p>Tareas completadas: <?php echo $completedTasks; ?></p>
+    <p>Tareas pendientes: <?php echo $pendingTasks; ?></p>
+
+    <!-- Botón para marcar todas las tareas como completadas -->
+    <form method="post" action="index.php">
+        <button type="submit" name="complete_all">Marcar Todas Como Completadas</button>
+    </form>
 
     <!-- Formulario para agregar nueva tarea -->
     <form action="add.php" method="post">

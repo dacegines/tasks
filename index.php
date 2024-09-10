@@ -40,6 +40,9 @@ $tasks = $db->query("SELECT * FROM tasks")->fetchAll(PDO::FETCH_ASSOC);
                 <!-- Botón para marcar como completada -->
                 <a href="complete.php?id=<?php echo $task['id']; ?>">Completar</a>
 
+                <!-- Botón para editar la tarea -->
+                <a href="edit.php?id=<?php echo $task['id']; ?>">Editar</a>
+
                 <!-- Botón para eliminar la tarea -->
                 <a href="delete.php?id=<?php echo $task['id']; ?>">Eliminar</a>
             </li>

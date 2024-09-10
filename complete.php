@@ -1,6 +1,6 @@
 <?php
-// Conectar a la base de datos SQLite
-$db = new PDO('mysql:host=localhost;dbname=task_manager;charset=utf8', 'root', ''); // Cambia 'root' y '' por tu usuario y contraseña de MySQL
+// Incluir el archivo de conexión a la base de datos
+include 'db.php';
 
 // Marcar la tarea como completada
 if (isset($_GET['id'])) {

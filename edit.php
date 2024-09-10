@@ -1,6 +1,6 @@
 <?php
-// Conectar a la base de datos MySQL usando PDO
-$db = new PDO('mysql:host=localhost;dbname=task_manager;charset=utf8', 'root', ''); // Cambia 'tu_contraseña' por la contraseña correcta de tu base de datos
+// Incluir el archivo de conexión a la base de datos
+include 'db.php';
 
 // Verificar si se ha enviado el formulario de edición
 if (isset($_POST['id']) && isset($_POST['task'])) {

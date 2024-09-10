@@ -1,9 +1,6 @@
 <?php
-
-$db = new PDO('mysql:host=localhost;dbname=task_manager;charset=utf8', 'root', ''); // Cambia 'root' y '' por tu usuario y contraseña de MySQL
-
-
-
+// Incluir el archivo de conexión a la base de datos
+include 'db.php';
 
 // Obtener todas las tareas de la base de datos
 $tasks = $db->query("SELECT * FROM tasks")->fetchAll(PDO::FETCH_ASSOC);
